@@ -74,9 +74,9 @@ public class eliminarView extends javax.swing.JDialog {
 
     private void eliminarBOTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBOTONActionPerformed
         // TODO add your handling code here:
-        
+
         String matricula = introducirDatos.getText().trim();
-        
+
         
         if (matricula.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(
@@ -85,13 +85,20 @@ public class eliminarView extends javax.swing.JDialog {
                     "vacio",
                     javax.swing.JOptionPane.WARNING_MESSAGE
             );
-            
+
             return;
         }
 
         controller.Concesionario.eliminarVehiculo(matricula);
 
-    
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Vehículo con matricula "+matricula + " eliminado correctamente",
+                "Eliminado",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+
+
     }//GEN-LAST:event_eliminarBOTONActionPerformed
 
     /**
