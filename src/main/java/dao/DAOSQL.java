@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
+
 import model.Vehiculo;
 
 /**
@@ -32,6 +32,9 @@ public class DAOSQL implements IDAO {
     private final String SeleccionarTODO = "SELECT * FROM " + JDBC_DDBB_TABLE + ";";
     private final String seleccionarPorMatricula = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE matricula = ?;";
     private final String seleccionarPorTipo = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE tipo = ?;";
+
+    //contar vehiculos
+    private final String contarTodos = "SELECT COUNT(*) FROM " + JDBC_DDBB_TABLE + ";";
     
     private final String SQL_INSERT = "INSERT INTO " + JDBC_DDBB_TABLE + " (matricula, marca, modelo, precio, tipo) VALUES (?, ?, ?, ?, ?);";
     private final String SQL_UPDATE = "UPDATE " + JDBC_DDBB_TABLE + " SET marca = ?, modelo = ?, precio = ?, tipo = ? WHERE matricula = ?;";
@@ -52,7 +55,7 @@ public class DAOSQL implements IDAO {
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
-        
+
         try {
             conn = DriverManager.getConnection(JDBC_URL + JDBC_OPTS, JDBC_USER, JDBC_PASSWORD);
             conn.createStatement().executeUpdate(SQL_CREATE_DB);
@@ -200,7 +203,7 @@ public class DAOSQL implements IDAO {
     }
 
     @Override
-    public  int insert(Vehiculo v) {
+    public int insert(Vehiculo v) {
         int filas = 0;
         Connection conn = null;
         PreparedStatement ps = null;
@@ -340,5 +343,49 @@ public class DAOSQL implements IDAO {
             }
         }
         return filas;
+    }
+
+ @Override    
+    public int contar() {
+        // total es el numero de vehiculos
+        int total = 0;
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DriverManager.getConnection(JDBC_URL + JDBC_OPTS, JDBC_USER, JDBC_PASSWORD);
+            conn.createStatement().executeUpdate(SQL_CREATE_DB);
+            conn.createStatement().executeUpdate(SQL_CREATE_TABLE);
+
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(contarTodos); //ejecuta la consulta a la bbdd
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error en contar : " + ex.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (SQLException ex) {
+            }
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (SQLException ex) {
+            }
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+            }
+        }
+
+        return total;
     }
 }

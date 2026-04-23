@@ -12,18 +12,20 @@ import model.Vehiculo;
  * @author ignac
  */
 public interface IDAO {
- 
+
     public abstract ArrayList<Vehiculo> readAll();
- 
+
     public abstract Vehiculo read(String matricula);
- 
+
     public abstract ArrayList<Vehiculo> readByTipo(String tipo);
- 
+
     public abstract int insert(Vehiculo vehiculo);
- 
+
     public abstract int update(Vehiculo vehiculo);
- 
+
     public abstract int delete(String matricula);
- 
+
     public abstract int deleteAll();
+
+    public abstract int contar();
 }

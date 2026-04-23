@@ -43,6 +43,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         buscarBOTON = new javax.swing.JButton();
         eliminarBOTON = new javax.swing.JButton();
         listarBOTON = new javax.swing.JButton();
+        ContarVehiculos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -68,37 +69,43 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         listarBOTON.setText("Listar Vehiculos");
         listarBOTON.addActionListener(this::listarBOTONActionPerformed);
 
+        ContarVehiculos.setText("Contar Vehiculos");
+        ContarVehiculos.addActionListener(this::ContarVehiculosActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(eliminarBOTON, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                    .addComponent(buscarBOTON, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(74, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(insertarBOTON, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(listarBOTON, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(67, 67, 67))
+                    .addComponent(eliminarBOTON, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buscarBOTON, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(listarBOTON, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ContarVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(71, 71, 71))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addGap(14, 14, 14)
+                .addGap(18, 18, 18)
                 .addComponent(insertarBOTON)
-                .addGap(41, 41, 41)
+                .addGap(27, 27, 27)
                 .addComponent(buscarBOTON)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addComponent(eliminarBOTON)
-                .addGap(46, 46, 46)
+                .addGap(28, 28, 28)
                 .addComponent(listarBOTON)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(ContarVehiculos)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -145,7 +152,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         concesionario = new Concesionario();
         try {
             concesionario.vehiculos = fichero.cargar();
-            
+
             //cuando la ventana se abre se crea el archivo si no esta y se carga todo al arraylist
         } catch (IOException ex) {
             System.getLogger(VentanaPrincipal.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
@@ -156,13 +163,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         try {
             // TODO add your handling code here:
-            
+
             //cuando la ventana principal se cierra se guarda todo
             fichero.guardar(concesionario.vehiculos);
         } catch (IOException ex) {
             System.getLogger(VentanaPrincipal.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void ContarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContarVehiculosActionPerformed
+        // TODO add your handling code here:
+        contarVehiculosView ventana = new contarVehiculosView(this, true);
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_ContarVehiculosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,6 +204,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ContarVehiculos;
     private javax.swing.JButton buscarBOTON;
     private javax.swing.JButton eliminarBOTON;
     private javax.swing.JButton insertarBOTON;
