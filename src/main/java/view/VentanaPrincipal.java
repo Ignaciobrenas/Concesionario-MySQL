@@ -44,6 +44,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         eliminarBOTON = new javax.swing.JButton();
         listarBOTON = new javax.swing.JButton();
         ContarVehiculos = new javax.swing.JButton();
+        modificarBOTON = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -72,40 +73,48 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ContarVehiculos.setText("Contar Vehiculos");
         ContarVehiculos.addActionListener(this::ContarVehiculosActionPerformed);
 
+        modificarBOTON.setText("Modificar Vehiculo");
+        modificarBOTON.addActionListener(this::modificarBOTONActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(insertarBOTON, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(eliminarBOTON, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buscarBOTON, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(listarBOTON, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ContarVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71))
+                    .addComponent(modificarBOTON, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(insertarBOTON, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(eliminarBOTON, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buscarBOTON, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(listarBOTON, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ContarVehiculos, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(insertarBOTON)
+                        .addGap(27, 27, 27)
+                        .addComponent(buscarBOTON)
+                        .addGap(18, 18, 18)
+                        .addComponent(eliminarBOTON)
+                        .addGap(28, 28, 28)
+                        .addComponent(listarBOTON)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(modificarBOTON)
                 .addGap(18, 18, 18)
-                .addComponent(insertarBOTON)
-                .addGap(27, 27, 27)
-                .addComponent(buscarBOTON)
-                .addGap(18, 18, 18)
-                .addComponent(eliminarBOTON)
-                .addGap(28, 28, 28)
-                .addComponent(listarBOTON)
-                .addGap(32, 32, 32)
                 .addComponent(ContarVehiculos)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -178,6 +187,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventana.setVisible(true);
     }//GEN-LAST:event_ContarVehiculosActionPerformed
 
+    private void modificarBOTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarBOTONActionPerformed
+        // TODO add your handling code here:
+         modificarView ventana = new modificarView(this, true);
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
+ 
+    }//GEN-LAST:event_modificarBOTONActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -210,5 +227,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton insertarBOTON;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton listarBOTON;
+    private javax.swing.JButton modificarBOTON;
     // End of variables declaration//GEN-END:variables
 }

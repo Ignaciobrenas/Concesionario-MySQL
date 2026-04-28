@@ -57,6 +57,35 @@ public class Concesionario {
         return (ArrayList<Vehiculo>) dao.readAll();
     }
 
+    public static void modificarVehiculo(String matricula, String atributo, String nuevoValor) throws IllegalArgumentException {
+        Vehiculo v = dao.read(matricula);
+        if (v == null) {
+            throw new IllegalArgumentException("El vehículo con matricula " + matricula + " no existe.");
+        }
+        switch (atributo.toLowerCase()) {
+            case "marca":
+                v.setMarca(nuevoValor);
+                break;
+            case "modelo":
+                v.setModelo(nuevoValor);
+                break;
+            case "precio":
+                try {
+                    v.setPrecio(Double.parseDouble(nuevoValor));
+                } catch (NumberFormatException e) {
+                    throw new IllegalArgumentException("El precio debe ser un número valido");
+                }
+                break;
+                
+            case "tipo":
+                v.setTipo(nuevoValor);
+                break;
+            default:
+                throw new IllegalArgumentException("Atributo no reconocido: " + atributo);
+        }
+        dao.update(v);
+    }
+
     public static void eliminarVehiculo(String matricula) throws IllegalArgumentException {
 //        Vehiculo encontrado = buscarVehiculo(matricula);
 //
