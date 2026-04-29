@@ -64,6 +64,8 @@ Concesionario/
         ├── contarVehiculosView.java    ← Muestra el total de vehículos (JDialog)
         ├── eliminarView.java           ← Eliminar vehículo por matrícula (JDialog)
         └── insertarView.java           ← Formulario de alta de vehículo (JDialog)
+        ├── listarView.java             ← Listar todos los vehiculos (JDialog)
+        └── modificarView.java          ← Modifica vehiculos (JDialog)
 ```
 
 ---
